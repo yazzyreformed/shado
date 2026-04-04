@@ -37,29 +37,21 @@ const VideoPlayer = ({ video, onComplete }) => {
         <video 
           ref={videoRef}
           controls 
+          crossOrigin="anonymous"
           src={video.s3Url} 
           style={{ width: '100%', aspectRatio: '16/9', display: 'block' }}
           onEnded={handleEnded}
-        />
-        
-        {showSubtitles && video.subtitle && (
-          <div style={{
-            position: 'absolute',
-            bottom: '60px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            background: 'rgba(0,0,0,0.7)',
-            padding: '10px 20px',
-            borderRadius: '8px',
-            color: '#fff',
-            fontSize: '1.1rem',
-            textAlign: 'center',
-            width: '80%',
-            backdropFilter: 'blur(4px)'
-          }}>
-            {video.subtitle}
-          </div>
-        )}
+        >
+          {showSubtitles && video.subtitleUrl && (
+            <track 
+              src={video.subtitleUrl} 
+              kind="subtitles" 
+              srcLang="en" 
+              label="English" 
+              default 
+            />
+          )}
+        </video>
       </div>
 
       <div className="flex justify-between items-center mt-2">

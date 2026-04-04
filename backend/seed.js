@@ -6,13 +6,13 @@ const exampleVideos = [
   {
     title: 'Example English Conversation',
     s3Url: 'https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4',
-    subtitle: 'Hello! Welcome to the shadowing session. Shadowing helps you improve your pronunciation.',
+    subtitleUrl: 'https://gist.githubusercontent.com/yasinzemheri/abcd/raw/sample.vtt', // You will replace this with your S3 .vtt URL!
     difficulty: 'easy'
   },
   {
     title: 'Advanced Tech Talk',
     s3Url: 'https://archive.org/download/ElephantsDream/ed_hd.mp4',
-    subtitle: 'Cloud computing allows you to scale applications globally. By using S3 and EC2, you achieve high availability.',
+    subtitleUrl: 'https://gist.githubusercontent.com/yasinzemheri/abcd/raw/advanced.vtt', // You will replace this with your S3 .vtt URL!
     difficulty: 'hard'
   }
 ];

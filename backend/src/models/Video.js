@@ -9,8 +9,8 @@ const videoSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  subtitle: {
-    type: String, // VTT data or text
+  subtitleUrl: {
+    type: String, // AWS S3 Link to the .vtt file
     default: null
   },
   difficulty: {
