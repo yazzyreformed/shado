@@ -1,6 +1,6 @@
-# ShadoWEB: AWS Tabanlı Akıllı Dil Çalışma Laboratuvarı 🚀☁️
+# ShadoWEB: AWS Tabanlı Akıllı Dil Çalışma Sistemi 🚀☁️
 
-> **Ders Adı:** Bulut Bilişim (CENG 3522) - Proje 1 Teslim Dokümantasyonu
+> **Ders Adı:** Bulut Bilişim (BLM 3522) - Proje 1 Teslim Dokümantasyonu
 
 ShadoWEB, kullanıcıların seçtikleri yabancı dildeki gerçek dünya kısa videoları (klipler, haber kesitleri) ile **Shadowing (Gölgeleme) tekniği** kullanarak telaffuz ve akıcılık (prosodi) becerilerini geliştirmelerini sağlayan SaaS tabanlı, bulut yerel bir web uygulamasıdır.
 
@@ -76,6 +76,3 @@ cd ../backend
 pm2 restart all
 ```
 
----
-
-> Projenin kullanımını, detaylarını ve kod mimarisini anlatan detaylı YouTube veya Loom proje videosu sisteme/ilgili LMS panellerine ayrıca yüklenecektir. Başarılar dileriz! 🎓
