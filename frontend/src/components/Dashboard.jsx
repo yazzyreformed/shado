@@ -4,7 +4,7 @@ import VideoPlayer from './VideoPlayer';
 import ShadowList from './ShadowList';
 import { Play, RotateCw } from 'lucide-react';
 
-const API_BASE = 'http://localhost:5001/api';
+const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:5001/api' : '/api';
 // We use a dummy test user for Fast Mode
 const DUMMY_USER_ID = 'test-user-123';
 

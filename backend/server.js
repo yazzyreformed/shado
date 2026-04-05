@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 
 const videoRoutes = require('./src/routes/videoRoutes');
 const shadowingRoutes = require('./src/routes/shadowingRoutes');
@@ -21,6 +22,12 @@ app.get('/api', (req, res) => {
 // Routes
 app.use('/api/videos', videoRoutes);
 app.use('/api/shadowing', shadowingRoutes);
+
+// Serve Static Frontend (React Dist)
+app.use(express.static(path.join(__dirname, 'public')));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/shadoweb')
