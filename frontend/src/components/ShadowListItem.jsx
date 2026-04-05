@@ -35,8 +35,9 @@ const ShadowListItem = ({ item }) => {
       
       {/* Circle Icon */}
       <div 
-        className="shadow-ring-container relative cursor-pointer"
+        className="shadow-ring-container cursor-pointer"
         style={{
+          position: 'relative',
           width: '100px',
           height: '100px',
           borderRadius: '50%',
