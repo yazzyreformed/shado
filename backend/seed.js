@@ -4,16 +4,22 @@ const Video = require('./src/models/Video');
 
 const exampleVideos = [
   {
-    title: 'Example English Conversation',
-    s3Url: 'https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4',
-    subtitleUrl: 'https://gist.githubusercontent.com/yasinzemheri/abcd/raw/sample.vtt', // You will replace this with your S3 .vtt URL!
-    difficulty: 'easy'
+    title: 'BYS Video Scene',
+    s3Url: 'https://shadoweb-videolar.s3.eu-north-1.amazonaws.com/bys.mp4',
+    subtitleUrl: 'https://shadoweb-videolar.s3.eu-north-1.amazonaws.com/bys.vtt',
+    difficulty: 'medium'
   },
   {
-    title: 'Advanced Tech Talk',
-    s3Url: 'https://archive.org/download/ElephantsDream/ed_hd.mp4',
-    subtitleUrl: 'https://gist.githubusercontent.com/yasinzemheri/abcd/raw/advanced.vtt', // You will replace this with your S3 .vtt URL!
+    title: 'DEX Advanced Scene',
+    s3Url: 'https://shadoweb-videolar.s3.eu-north-1.amazonaws.com/dex.mp4',
+    subtitleUrl: 'https://shadoweb-videolar.s3.eu-north-1.amazonaws.com/dex.vtt',
     difficulty: 'hard'
+  },
+  {
+    title: 'SSS English Practice',
+    s3Url: 'https://shadoweb-videolar.s3.eu-north-1.amazonaws.com/sss.mp4',
+    subtitleUrl: 'https://shadoweb-videolar.s3.eu-north-1.amazonaws.com/sss.vtt',
+    difficulty: 'easy'
   }
 ];
 
