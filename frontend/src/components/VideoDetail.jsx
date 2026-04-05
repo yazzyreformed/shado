@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { ArrowLeft, FileText } from 'lucide-react';
+import { ArrowLeft, FileText, Plus } from 'lucide-react';
 import VideoPlayer from './VideoPlayer';
 import TranscriptModal from './TranscriptModal';
 
@@ -65,13 +65,23 @@ const VideoDetail = () => {
           <VideoPlayer video={video} onComplete={handleComplete} />
           
           <div className="flex justify-between items-center" style={{ marginTop: '8px' }}>
-            <button 
-              className="btn-primary" 
-              onClick={() => setShowTranscript(true)}
-              style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,0.1)', borderColor: 'rgba(255,255,255,0.2)' }}
-            >
-              <FileText size={18} /> View Transcript Text
-            </button>
+            <div className="flex items-center gap-4">
+              <button 
+                className="btn-primary" 
+                onClick={() => setShowTranscript(true)}
+                style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'rgba(255,255,255,0.1)', borderColor: 'rgba(255,255,255,0.2)' }}
+              >
+                <FileText size={18} /> View Transcript Text
+              </button>
+              
+              <button 
+                className="btn-primary" 
+                onClick={handleComplete}
+                style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+              >
+                <Plus size={18} /> Add to Shadowlist
+              </button>
+            </div>
             {activityError && (
               <p style={{ color: '#ef4444', fontSize: '0.9rem', margin: 0 }}>{activityError}</p>
             )}
