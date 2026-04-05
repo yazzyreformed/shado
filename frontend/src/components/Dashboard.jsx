@@ -1,95 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import VideoPlayer from './VideoPlayer';
-import ShadowList from './ShadowList';
-import { Play, RotateCw } from 'lucide-react';
+import ShadowListItem from './ShadowListItem';
+import FAB from './FAB';
 
 const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:5001/api' : '/api';
-// We use a dummy test user for Fast Mode
 const DUMMY_USER_ID = 'test-user-123';
 
 const Dashboard = () => {
-  const [currentVideo, setCurrentVideo] = useState(null);
+  const [list, setList] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [stats, setStats] = useState(null);
 
-  const fetchRandomVideo = async () => {
-    setLoading(true);
+  const fetchShadowList = async () => {
     try {
-      const res = await axios.get(`${API_BASE}/videos/random`);
-      setCurrentVideo(res.data);
+      const res = await axios.get(`${API_BASE}/shadowing/list/${DUMMY_USER_ID}`);
+      setList(res.data);
     } catch (error) {
-      console.error('Error fetching video:', error);
+      console.error('Error fetching shadow list', error);
     } finally {
       setLoading(false);
     }
   };
 
-  const fetchStats = async () => {
-    try {
-      const res = await axios.get(`${API_BASE}/shadowing/stats/${DUMMY_USER_ID}`);
-      setStats(res.data);
-    } catch (error) {
-      console.error('Error fetching stats:', error);
-    }
-  };
-
   useEffect(() => {
-    fetchRandomVideo();
-    fetchStats();
+    fetchShadowList();
   }, []);
 
-  const handleShadowComplete = async () => {
-    if (!currentVideo) return;
-    try {
-      await axios.post(`${API_BASE}/shadowing/complete`, {
-        userId: DUMMY_USER_ID,
-        videoId: currentVideo._id
-      });
-      // Refresh stats
-      fetchStats();
-    } catch (error) {
-      console.error('Error saving complete status:', error);
-    }
-  };
-
   return (
-    <div className="flex-col gap-6 flex">
-      <div className="flex justify-between items-center mb-6">
-        <div>
-          <h2 style={{ fontSize: '2rem', marginBottom: '8px' }}>Welcome back, Explorer!</h2>
-          <p className="text-muted" style={{ color: 'var(--text-muted)' }}>Ready to improve your pronunciation today?</p>
-        </div>
-        <button className="btn-primary flex items-center gap-4" onClick={fetchRandomVideo}>
-          <RotateCw size={20} />
-          <span>New Shadow</span>
-        </button>
+    <div className="flex-col gap-8 flex">
+      <div>
+        <h2 style={{ fontSize: '2rem', marginBottom: '8px' }}>Your Shadow Collection</h2>
+        <p className="text-muted" style={{ color: 'var(--text-muted)' }}>
+          Click an academy ring to see your progress or start shadowing.
+        </p>
       </div>
 
-      <div className="grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '24px' }}>
-        <div className="glass-panel">
-          {loading ? (
-            <div className="flex justify-center items-center" style={{ height: '300px' }}>
-              <p>Loading video...</p>
-            </div>
-          ) : currentVideo ? (
-            <VideoPlayer 
-              video={currentVideo} 
-              onComplete={handleShadowComplete} 
-            />
-          ) : (
-            <div className="flex justify-center items-center flex-col" style={{ height: '300px', gap: '16px' }}>
-              <p>No video available right now.</p>
-              <button className="btn-primary" onClick={fetchRandomVideo}>Try Again</button>
-            </div>
-          )}
+      {loading ? (
+        <p>Loading your collection...</p>
+      ) : list && list.length > 0 ? (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '32px' }}>
+          {list.map((item, idx) => (
+            <ShadowListItem key={idx} item={item} />
+          ))}
         </div>
+      ) : (
+        <div className="glass-panel text-center flex-col flex justify-center items-center" style={{ height: '300px', gap: '16px' }}>
+          <p>Your shadow collection is empty.</p>
+          <p style={{ color: 'var(--text-muted)' }}>Use the (+) button at bottom right to discover new scenes!</p>
+        </div>
+      )}
 
-        <div className="glass-panel flex-col gap-6 flex">
-          <h3 style={{ fontSize: '1.25rem', borderBottom: '1px solid var(--surface-border)', paddingBottom: '12px' }}>Your Shadowing Logs</h3>
-          <ShadowList stats={stats} />
-        </div>
-      </div>
+      <FAB />
     </div>
   );
 };

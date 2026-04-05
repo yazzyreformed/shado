@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Headphones, Activity, BookOpen } from 'lucide-react';
 import Dashboard from './components/Dashboard';
+import DiscoverFeed from './components/DiscoverFeed';
+import VideoDetail from './components/VideoDetail';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
         <main className="container animate-fade-in" style={{ padding: '40px 20px' }}>
           <Routes>
             <Route path="/" element={<Dashboard />} />
+            <Route path="/discover" element={<DiscoverFeed />} />
+            <Route path="/video/:id" element={<VideoDetail />} />
           </Routes>
         </main>
       </div>
